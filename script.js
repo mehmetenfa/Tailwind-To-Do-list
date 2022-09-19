@@ -4,6 +4,7 @@ const delete_button = document.querySelectorAll(".bodyy")[0];
 const ul = document.querySelector("ul");
 const body = document.querySelector("body");
 
+
 const addTodo = (e) => {
   const newTodo = input.value.trim();
   if (newTodo === "") {
@@ -37,45 +38,45 @@ const addTodoUI = (newTodo) => {
   input.value = "";
 };
 
-// localStorage
-
+// LocalStorage 
 const getTodos = () => {
-  let todos;
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("todos"));
-  }
-  return todos;
+    let todos;
+    if(localStorage.getItem("todos") === null ){
+        todos = []; 
+    }else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    return todos;
 };
 
 const setTodoLocalStorage = (newTodo) => {
-  let todo = getTodos();
-  todo.push(newTodo);
-  localStorage.setItem("todos", JSON.stringify(todo));
+    let todo = getTodos()
+    todo.push(newTodo)
+
+    localStorage.setItem("todos",JSON.stringify(todo));
 };
 
 const loadAllTodos = () => {
-  let todos = getTodos();
+    let todos = getTodos();
 
-  todos.forEach((todo) => {
-    addTodoUI(todo);
-  });
-};
+    todos.forEach((todo) => {
+        addTodoUI(todo);
+
+    });
+}
 
 const deleteTodoStorage = (deleteTodo) => {
-  let todos = getTodos();
-
-  todos.forEach((todo, idx) => {
-    if (todo === deleteTodo) {
-      todos.splice(idx, 1);
-    }
-  });
-
-  localStorage.setItem("todos", JSON.stringify(todos));
-};
+    let todos = getTodos()
+    
+    todos.forEach ((todo, idx) => {
+        if(todo === deleteTodo) {
+            todos.splice(idx,1);
+        }
+    });
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
 
 document.addEventListener("DOMContentLoaded", loadAllTodos);
-input.addEventListener("keyup", addTodo);
+body.addEventListener("keyup", addTodo)
 buttons.addEventListener("click", addTodo);
 delete_button.addEventListener("click", deleteTodo);
