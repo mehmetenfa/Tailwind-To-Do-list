@@ -20,7 +20,7 @@ Project aims to create Todo_list within html and css.
 
 ## Project Skeleton 
 
-```
+
 Todo_list (folder)
 
 |----readme.md                 
